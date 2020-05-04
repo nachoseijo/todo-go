@@ -9,11 +9,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-const databaseURI = "mongodb://localhost:27017"
+//Needs to be modified in order to take the value from env vars
+const databaseURI = "mongodb://database:27017"
 const databaseName = "todo-go"
 const collection = "todos"
 
 func main() {
+
 	//Connect to Database
 	database.Connect(collection, databaseName, databaseURI)
 
@@ -23,5 +25,5 @@ func main() {
 	//Router Handlers
 	routes.Routes(router)
 
-	log.Fatal(router.Run(":8090"))
+	log.Fatal(router.Run(":80"))
 }
