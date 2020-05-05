@@ -10,12 +10,11 @@ import (
 
 //Routes creates API routes
 func Routes(router *gin.Engine) {
-	router.GET("/", welcome)
-	router.GET("/todo", controllers.GetAllTodos)
-	router.POST("/todo", controllers.CreateTodo)
-	router.GET("/todo/:todoId", controllers.GetSingleTodo)
-	router.PATCH("/todo/:todoId", controllers.UpdateTodo)
-	router.DELETE("/todo/:todoId", controllers.DeleteTodo)
+	router.GET("/api/v1/todo", controllers.GetAllTodos)
+	router.POST("/api/v1/todo", controllers.CreateTodo)
+	router.GET("/api/v1/todo/:todoId", controllers.GetSingleTodo)
+	router.PATCH("/api/v1/todo/:todoId", controllers.UpdateTodo)
+	router.DELETE("/api/v1/todo/:todoId", controllers.DeleteTodo)
 	router.NoRoute(notFound)
 }
 
