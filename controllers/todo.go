@@ -91,6 +91,14 @@ func UpdateTodo(context *gin.Context) {
 //DeleteTodo deletes a todo from database
 func DeleteTodo(context *gin.Context) {
 	todoID := context.Param("todoId")
+	todoInDB := database.FindOne(todoID)
+
+	if todoInDB == nil {
+		context.JSON(http.StatusNotFound, gin.H{
+			"message": "Todo not found",
+		})
+		return
+	}
 
 	if database.Delete(todoID) != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{
